@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-	"server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Denis Georgiev",
   "license": "MIT",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.3.0",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "webpack-cli": "^4.9.0"
   }
 }

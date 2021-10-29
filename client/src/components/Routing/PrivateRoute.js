@@ -1,0 +1,24 @@
+// A function component that checks if user is authenticated
+// Will be used on protected Routes
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import { Route, Redirect } from "react-router-dom"
+
+
+
+// Get Component from props
+// ...rest takes anything else passed in 
+const PrivateRoute = ({ component: Component, auth: {loading, isAuthenticated}, ...rest }) => (
+	<Route {...rest} render={props => !isAuthenticated && !loading ? (<Redirect to="/login" />): (<Component {...props} />)} />
+)
+
+
+PrivateRoute.propTypes = {
+	auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+export default connect(mapStateToProps)(PrivateRoute)
